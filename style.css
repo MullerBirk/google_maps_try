@@ -1,6 +1,6 @@
 #map{
     width: 100vw;
-    height: 40vw;
+    height: 100vh;
 }
 
 
@@ -9,4 +9,8 @@
         margin: 0;
         padding: 0;
       }
+
+.data_img{
+    width: 50vw;
+}
 

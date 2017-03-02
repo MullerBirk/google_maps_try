@@ -1,0 +1,18 @@
+[
+    {
+    "id":"kea",
+    "koordinater":{"lat": 55.706371, "lng": 12.53913},
+    "navn": "KEA",
+    "beskrivelse":"Dette er en skole",
+    "img":"kea"
+},
+
+
+{
+    "id":"nv",
+    "koordinater":{"lat": 55.706003, "lng": 12.540806},
+    "navn": "NV",
+    "beskrivelse":"Dette er en bydel",
+    "img":"nv"
+}
+ ]

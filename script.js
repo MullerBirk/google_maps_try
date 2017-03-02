@@ -1,65 +1,97 @@
  var map;
 
+
  var my_lat_lng = {lat: 55.706003, lng: 12.540806};
 
- var kea_lat_lng = {lat: 55.706371, lng: 12.53913};
+
 
       function initMap() {
+
         map = new google.maps.Map(document.getElementById('map'), {
           center: my_lat_lng,
           zoom: 15
         });
 
-        var marker = new google.maps.Marker({
-          position: my_lat_lng,
-          map: map,
-          title: "NV!"
-        })
+        $.getJSON('data.json', all_places);
 
-        var marker_kea = new google.maps.Marker({
-          position: kea_lat_lng,
+        }
+
+
+
+ //var kea_lat_lng = {lat: 55.706371, lng: 12.53913};
+
+
+
+
+
+    function all_places(data){
+        console.log(data);
+        data.forEach(make_markers);
+    }
+
+    function make_markers(info){
+        console.log(info.koordinater);
+
+        var placering = info.koordinater;
+
+
+        var marker = new google.maps.Marker({
+          position: placering,
           map: map,
           icon: 'marker.png',
           title: "KEA!"
-        })
+        });
 
 
 
-        marker_kea.addListener('click', function klik() {
+        marker.addListener('click', function klik() {
           map.setZoom(20);
-          map.setCenter(marker_kea.getPosition());
+          map.setCenter(marker.getPosition());
+
 
           //infowindow
             var infowindow = new google.maps.InfoWindow({
                 content: "Dette er min skole",
-                position: marker_kea.getPosition()
+                position: marker.getPosition()
             });
 
-                //lav klon af template
             var klon_info = document.querySelector("#info_template").content.cloneNode(true);
 
-            console.log("klon lavet");
-
-                //ændre tekst
-            klon_info.querySelector("#info_window").textContent = "hej";
-
-            console.log("tekst ændret");
-
-                //append child
-            //document.querySelector("body").appendChild(klon_info);
-
-            console.log("append child");
+            klon_info.querySelector(".data_navn").textContent = info.navn;
+            klon_info.querySelector(".data_beskrivelse").textContent = info.beskrivelse;
+            klon_info.querySelector(".data_img").src = "img/" + info.img + ".jpg";
 
 
-            // info fra html
-            //var info_indhold = document.querySelector("#info_window");
 
             infowindow.setContent(klon_info);
 
-            //vis infowindow
-            infowindow.open(map);
-        });
+            infowindow.open(map, marker);
 
+        });
+//
+//                //lav klon af template
+//
+//
+//            console.log("klon lavet");
+//
+//                //ændre tekst
+//
+//
+//            console.log("tekst ændret");
+//
+//                //append child
+//            //document.querySelector("body").appendChild(klon_info);
+//
+//            console.log("append child");
+//
+//
+//            // info fra html
+//            //
+//
+//            //vis infowindow
+//
+//        });
+//
 
 
       }
