@@ -11,8 +11,34 @@
         });
 
         var marker = new google.maps.Marker({
-          position: kea_lat_lng,
+          position: my_lat_lng,
           map: map,
           title: "NV!"
         })
+
+        var marker_kea = new google.maps.Marker({
+          position: kea_lat_lng,
+          map: map,
+          icon: 'marker.png',
+          title: "KEA!"
+        })
+
+
+        marker_kea.addListener('click', function() {
+          map.setZoom(20);
+          map.setCenter(marker_kea.getPosition());
+
+          //infowindow
+            var infowindow = new google.maps.InfoWindow({
+                content: "Dette er min skole",
+                position: marker_kea.getPosition()
+            });
+
+            infowindow.open(map);
+        });
+
+
       }
+
+
+
