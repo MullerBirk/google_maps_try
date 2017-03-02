@@ -35,10 +35,28 @@
                 position: marker_kea.getPosition()
             });
 
-            var info_indhold = document.querySelector("#info_window");
+                //lav klon af template
+            var klon_info = document.querySelector("#info_template").content.cloneNode(true);
 
-            infowindow.setContent(info_indhold);
+            console.log("klon lavet");
 
+                //ændre tekst
+            klon_info.querySelector("#info_window").textContent = "hej";
+
+            console.log("tekst ændret");
+
+                //append child
+            //document.querySelector("body").appendChild(klon_info);
+
+            console.log("append child");
+
+
+            // info fra html
+            //var info_indhold = document.querySelector("#info_window");
+
+            infowindow.setContent(klon_info);
+
+            //vis infowindow
             infowindow.open(map);
         });
 
