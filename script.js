@@ -24,7 +24,8 @@
         })
 
 
-        marker_kea.addListener('click', function() {
+
+        marker_kea.addListener('click', function klik() {
           map.setZoom(20);
           map.setCenter(marker_kea.getPosition());
 
@@ -34,8 +35,13 @@
                 position: marker_kea.getPosition()
             });
 
+            var info_indhold = document.querySelector("#info_window");
+
+            infowindow.setContent(info_indhold);
+
             infowindow.open(map);
         });
+
 
 
       }
